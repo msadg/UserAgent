@@ -1,11 +1,11 @@
-package UserAgent
+package userAgent
 
 import (
 	"math/rand"
 	"time"
 
-	"github.com/msadg/UserAgent/comm"
-	"github.com/msadg/UserAgent/entity"
+	"github.com/msadg/userAgent/comm"
+	"github.com/msadg/userAgent/entity"
 )
 
 // 初始化的固定数据
@@ -24,7 +24,7 @@ func init() {
 
 	data.Res = make([]string, 0)
 	data.Names = make([]string, 0)
-	// 填充 UserAgent list
+	// 填充 userAgent list
 	for k, v := range data.Browsers {
 		data.Names = append(data.Names, k)
 		for _, info := range v {

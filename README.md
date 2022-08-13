@@ -6,7 +6,7 @@ Golang 开发的随机获取 UserAgent 的库和 API
 
 ## :memo: 数据文件
 
-> ./data/UserAgent.json
+> ./data/user-agent.json
 
 ## :wrench: UserAgent Library
 

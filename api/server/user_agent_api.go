@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/msadg/UserAgent"
+	"github.com/msadg/userAgent"
 )
 
 const (
@@ -37,11 +37,11 @@ func main() {
 			switch ua {
 
 			case RAND: // 随机单条信息
-				data := UserAgent.Rand()
+				data := userAgent.Rand()
 				w.Write(toJson(data))
 
 			case ALL: // 所有 User-Agent
-				data := UserAgent.All()
+				data := userAgent.All()
 				w.Write(toJson(data))
 
 			default: // 判断是不是浏览器
@@ -51,7 +51,7 @@ func main() {
 					ua = "microsoft edge"
 				}
 
-				browserNames := UserAgent.ListBrowsers()
+				browserNames := userAgent.ListBrowsers()
 
 				for _, name := range browserNames {
 					if name == ua {
@@ -60,14 +60,14 @@ func main() {
 						switch dt {
 
 						case RAND: // 随机一条
-							d := UserAgent.RandBs(name)
+							d := userAgent.RandBs(name)
 							w.Write(toJson(d))
 
 						case NULL: // 没有写
 							fallthrough
 
 						case ALL: // 全部获取
-							data := UserAgent.BrowserAll(name) // 获取浏览器所有 User-Agent
+							data := userAgent.BrowserAll(name) // 获取浏览器所有 User-Agent
 							w.Write(toJson(data))
 
 						default: // 其他参数

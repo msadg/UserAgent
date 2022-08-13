@@ -1,6 +1,6 @@
 package entity
 
-// UserAgents array
+// userAgents array
 type Uas []string
 
 // browsers json data
@@ -12,7 +12,7 @@ type Uas []string
 // 	Safari  Uas `json:"safari"`
 // }
 
-// UserAgents Json Data
+// userAgents Json Data
 type UasJsonData struct {
 	Bs map[string]Uas `json:"browsers"` // browsers
 }
