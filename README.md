@@ -4,7 +4,24 @@
 
 Golang 开发的随机获取 UserAgent 的库和 API
 
-## :memo: 数据文件
+## Installation
+
+``` sh
+$ cd mygoapp
+$ go get github.com/msadg/UserAgent
+```
+
+## Use
+
+``` go
+package main
+// ...
+//module github.com/msadg/userAgent
+import "github.com/msadg/userAgent
+// ...
+```
+
+## :memo: Data
 
 > ./data/user-agent.json
 
@@ -52,10 +69,10 @@ Golang 开发的随机获取 UserAgent 的库和 API
 
 > api/server/user_agent_api.go
 
-:rocket:启动服务
+:rocket:Run
 
 ``` sh
-go run ./api/server -p :9580
+go run ./api/server [<-p :9580>]
 ```
 
 * 全部 UserAgent
