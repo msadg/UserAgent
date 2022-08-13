@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"log"
 	"net/http"
 
@@ -17,9 +18,12 @@ const (
 )
 
 func main() {
-	add := ":9580"
-	// /api?ua={<rand>,<browserName>,<all>}
+	// add := ":9580"
+	var port string
+	flag.StringVar(&port, "p", ":9580", "HTTP Server Port")
+	// /api?ua={<rand>,<browserName>,<[all]>}[&dt=<rand/count/[all]>]
 	// ua : rand / browserName / all
+	// browserName: {chrome, opera, firefox, ie, safari, edge}
 	// if ua == browserName and dt(datatype)={<rand>,<count>,[all]}
 	// dt : rand / count / [all]default
 	// rand 随机
@@ -28,34 +32,46 @@ func main() {
 	http.HandleFunc("/api", func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 		if r.Method == http.MethodGet {
+
 			ua := r.FormValue(UA)
 			switch ua {
+
 			case RAND: // 随机单条信息
 				data := UserAgent.Rand()
 				w.Write(toJson(data))
+
 			case ALL: // 所有 User-Agent
 				data := UserAgent.All()
 				w.Write(toJson(data))
+
 			default: // 判断是不是浏览器
 				if ua == "ie" {
-					ua = "internetexplorer"
+					ua = "internet explorer"
+				} else if ua == "edge" {
+					ua = "microsoft edge"
 				}
+
 				browserNames := UserAgent.ListBrowsers()
+
 				for _, name := range browserNames {
 					if name == ua {
 						// 判断需要怎么获取信息
 						dt := r.FormValue(DT)
 						switch dt {
+
 						case RAND: // 随机一条
 							d := UserAgent.RandBs(name)
 							w.Write(toJson(d))
+
 						case NULL: // 没有写
 							fallthrough
+
 						case ALL: // 全部获取
 							data := UserAgent.BrowserAll(name) // 获取浏览器所有 User-Agent
 							w.Write(toJson(data))
+
 						default: // 其他参数
-							w.Write(nil)
+							w.Write(toJson([]byte("参数错误")))
 						}
 					}
 				}
@@ -63,7 +79,7 @@ func main() {
 			}
 		}
 	})
-	log.Fatal(http.ListenAndServe(add, nil))
+	log.Fatal(http.ListenAndServe(port, nil))
 }
 
 // 转换成JSON

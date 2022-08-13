@@ -8,18 +8,19 @@ import (
 	"github.com/msadg/UserAgent/entity"
 )
 
-// 全局数据
+// 初始化的固定数据
 var data *entity.UaData
 
 // 初始化函数
 // 从文本中读取信息，并写入一个变量中
 func init() {
 	rand.Seed(time.Now().Unix())
+
 	uas, err := comm.LoadData() // 加载数据
 	checkError(err)
 
 	data = &entity.UaData{}
-	data.Browsers = uas.Bs
+	data.Browsers = uas.Bs // 浏览器分类
 
 	data.Res = make([]string, 0)
 	data.Names = make([]string, 0)

@@ -14,8 +14,7 @@ type Uas []string
 
 // UserAgents Json Data
 type UasJsonData struct {
-	Bs map[string]Uas    `json:"browsers"`  // browsers
-	Rs map[string]string `json:"randomize"` // randomize
+	Bs map[string]Uas `json:"browsers"` // browsers
 }
 
 // UaData
