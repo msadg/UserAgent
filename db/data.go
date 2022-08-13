@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	f "github.com/msadg/userAgent/io/file"
+	f "github.com/msadg/UserAgent/util/file"
 )
 
 // 获得文件内容

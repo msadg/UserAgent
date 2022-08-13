@@ -4,23 +4,23 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/msadg/userAgent/db"
-	"github.com/msadg/userAgent/entity"
-	"github.com/msadg/userAgent/net"
+	"github.com/msadg/UserAgent/db"
+	"github.com/msadg/UserAgent/entity"
+	"github.com/msadg/UserAgent/net"
 )
 
 const (
 	// 文件位置
-	Json_Agent_File = "../../userAgent/data/user-agent.json" // ChinaArea
-	// Json_Agent_File = "../../data/user-agent.json" // test
-	// Json_Agent_File = "../userAgent/data/user-agent.json"
+	Json_Agent_File = "./data/user-agent.json"
+	// Json_Agent_File = "../../data/user-agent.json" // api
+	// Json_Agent_File = "../UserAgent/data/user-agent.json" // local test
 
 	// 链接地址
-	// https://fake-userAgent.herokuapp.com/browsers/0.1.11
-	User_Agent_Url = "https://fake-userAgent.herokuapp.com/browsers/0.1.11"
+	// https://fake-useragent.herokuapp.com/browsers/0.1.11
+	User_Agent_Url = "https://fake-useragent.herokuapp.com/browsers/0.1.11"
 )
 
-// 从网络更新 userAgent
+// 从网络更新 UserAgent
 func Update() error {
 
 	data, err := net.Get(User_Agent_Url)

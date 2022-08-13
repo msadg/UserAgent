@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/msadg/userAgent"
+	"github.com/msadg/UserAgent"
 )
 
 const (
@@ -21,13 +21,16 @@ func main() {
 	// add := ":9580"
 	var port string
 	flag.StringVar(&port, "p", ":9580", "HTTP Server Port")
+
 	// /api?ua={<rand>,<browserName>,<[all]>}[&dt=<rand/count/[all]>]
 	// ua : rand / browserName / all
 	// browserName: {chrome, opera, firefox, ie, safari, edge}
+
 	// if ua == browserName and dt(datatype)={<rand>,<count>,[all]}
 	// dt : rand / count / [all]default
 	// rand 随机
 	// count 多少条
+
 	// all 默认的模式，就是不写
 	http.HandleFunc("/api", func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
@@ -37,11 +40,11 @@ func main() {
 			switch ua {
 
 			case RAND: // 随机单条信息
-				data := userAgent.Rand()
+				data := UserAgent.Rand()
 				w.Write(toJson(data))
 
 			case ALL: // 所有 User-Agent
-				data := userAgent.All()
+				data := UserAgent.All()
 				w.Write(toJson(data))
 
 			default: // 判断是不是浏览器
@@ -51,7 +54,7 @@ func main() {
 					ua = "microsoft edge"
 				}
 
-				browserNames := userAgent.ListBrowsers()
+				browserNames := UserAgent.ListBrowsers()
 
 				for _, name := range browserNames {
 					if name == ua {
@@ -60,14 +63,14 @@ func main() {
 						switch dt {
 
 						case RAND: // 随机一条
-							d := userAgent.RandBs(name)
+							d := UserAgent.RandBs(name)
 							w.Write(toJson(d))
 
 						case NULL: // 没有写
 							fallthrough
 
 						case ALL: // 全部获取
-							data := userAgent.BrowserAll(name) // 获取浏览器所有 User-Agent
+							data := UserAgent.BrowserAll(name) // 获取浏览器所有 User-Agent
 							w.Write(toJson(data))
 
 						default: // 其他参数

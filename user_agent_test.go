@@ -1,10 +1,10 @@
-package userAgent_test
+package UserAgent_test
 
 import (
 	"log"
 	"testing"
 
-	ua "github.com/msadg/userAgent"
+	ua "github.com/msadg/UserAgent"
 )
 
 func TestRand(t *testing.T) {

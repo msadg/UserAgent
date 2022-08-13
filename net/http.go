@@ -11,7 +11,7 @@ func Get(url string) ([]byte, error) {
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	ua := ""
 	checkError(err)
-	req.Header.Set("userAgent", ua)
+	req.Header.Set("UserAgent", ua)
 	checkError(err)
 
 	// 建立链接

@@ -1,3 +1,3 @@
-module github.com/msadg/userAgent
+module github.com/msadg/UserAgent
 
 go 1.18

@@ -16,8 +16,7 @@ $ go get github.com/msadg/UserAgent
 ``` go
 package main
 // ...
-//module github.com/msadg/userAgent
-import "github.com/msadg/userAgent
+import "github.com/msadg/UserAgent
 // ...
 ```
 
@@ -30,19 +29,19 @@ import "github.com/msadg/userAgent
 * 随机获取一条 UserAgent
 
     ``` go
-    userAgent.Rand() string
+    UserAgent.Rand() string
     ```
 
-* 获取所有的 User-Agent
+* 获取所有的 UserAgent
 
     ``` go
-    userAgent.All() []string
+    UserAgent.All() []string
     ```
 
 * 所有浏览器名
 
     ``` go
-    userAgent.ListBrowsers() []string
+    UserAgent.ListBrowsers() []string
     ```
 
 * 按设备浏览器随机获取一条 UserAgent
@@ -56,13 +55,14 @@ import "github.com/msadg/userAgent
     // microsoft edge
     // iPhone
     // android
-    userAgent.RandBs(name string) string
+    // other
+    UserAgent.RandBs(name string) string
     ```
 
 * 获取某个浏览器所属的所有 UserAgent
 
     ``` go
-    userAgent.BrowserAll(name string) []string
+    UserAgent.BrowserAll(name string) []string
     ```
 
 ## :mag:UserAgent API
@@ -133,6 +133,7 @@ go run ./api/server [<-p :9580>]
         edge
         iPhone
         android
+        other
 
 {dt}: rand/{count}/all
 

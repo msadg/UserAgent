@@ -1,40 +1,42 @@
-package userAgent
+package UserAgent
 
 import (
 	"math/rand"
 	"time"
 
-	"github.com/msadg/userAgent/comm"
-	"github.com/msadg/userAgent/entity"
+	"github.com/msadg/UserAgent/comm"
+	"github.com/msadg/UserAgent/entity"
 )
 
-// 初始化的固定数据
-var data *entity.UaData
-
-// 初始化函数
+// 加载
 // 从文本中读取信息，并写入一个变量中
-func init() {
+func load() entity.UaData {
+
+	var data entity.UaData
+
 	rand.Seed(time.Now().Unix())
 
 	uas, err := comm.LoadData() // 加载数据
 	checkError(err)
 
-	data = &entity.UaData{}
+	data = entity.UaData{}
 	data.Browsers = uas.Bs // 浏览器分类
 
 	data.Res = make([]string, 0)
 	data.Names = make([]string, 0)
-	// 填充 userAgent list
+	// 填充 UserAgent list
 	for k, v := range data.Browsers {
 		data.Names = append(data.Names, k)
 		for _, info := range v {
 			data.Res = append(data.Res, info)
 		}
 	}
+	return data
 }
 
 // 所有浏览器列表
 func ListBrowsers() []string {
+	data := load()
 	if data.Browsers == nil {
 		return nil
 	}
@@ -46,6 +48,7 @@ func ListBrowsers() []string {
 
 // 随机获取一条 User-Agent
 func Rand() string {
+	data := load()
 	if data.Res == nil {
 		return ""
 	}
@@ -64,6 +67,7 @@ func Rand() string {
 
 // 浏览器列表名字中随机获取一条 User-Agent
 func RandBs(name string) string {
+	data := load()
 	if name == "" {
 		return ""
 	}
@@ -76,6 +80,7 @@ func RandBs(name string) string {
 
 // 获取某个浏览器所属的所有 User-Agent
 func BrowserAll(name string) []string {
+	data := load()
 	if data.Browsers == nil {
 		return nil
 	}
@@ -84,6 +89,7 @@ func BrowserAll(name string) []string {
 
 // 获取所有的 User-Agent
 func All() []string {
+	data := load()
 	return data.Res
 }
 
