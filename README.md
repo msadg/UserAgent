@@ -102,7 +102,7 @@ go run ./api/server -p :9580
 
 :bulb:Url 访问链接参数
 
-``` http
+``` text
 /api[?ua={ua}[&dt={dt}]]
 
 {ua}: rand | {browserName} | all
